@@ -4,7 +4,7 @@
 
 if [[ $1 != -* ]]
 then
-  echo "Options: [-i,-s] [-u,-r] <file name>"
+  echo "Options: [-i,-s] [-r] <file name>"
   exit 0
 fi
 
@@ -37,11 +37,6 @@ checkappimage(){
     echo -e "${ERR} The argument is NOT an appimage"
     exit 0
   fi
-}
-
-update(){
-  sudo curl https://raw.githubusercontent.com/WalkingGarbage/appim/main/appim.sh > /usr/local/bin/appim && echo -e "${OK} Update downloaded" || echo -e "${ERR} Couldn't download update"
-  sudo chmod +x /usr/local/bin/appim && echo -e "${DONE} Update completed"
 }
 
 list(){
@@ -137,11 +132,8 @@ while getopts 'iusrl' OPTION; do
     l)
       list
       ;;
-    u)
-      update
-      ;;
     *)
-      echo "Options: [-i,-s] [-u,-r] <file name>"
+      echo "Options: [-i,-s] [-r] <file name>"
       ;;
   esac
 done
